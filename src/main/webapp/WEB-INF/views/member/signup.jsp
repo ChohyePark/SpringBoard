@@ -59,7 +59,7 @@
 				<div class="col-3 col-sm-2 col-md-2 font-size-sm">아이디</div>
 				<div class="col-9 col-sm-7 col-md-6 p-1">
 					<input type="text" class="form-control" id="inId"
-						 name = "memberid" placeholder="아이디를 입력해주세요.">
+						 name = "id" placeholder="아이디를 입력해주세요.">
 				</div>
 				<div
 					class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
@@ -114,7 +114,7 @@
 			<div class="row">
 				<div class="col-3 col-sm-2 col-md-2 font-size-sm">우편번호</div>
 				<div class="col-9 col-sm-7 col-md-6 p-1">
-					<input type="text" class="form-control" id="postNum" name = "postNum" readonly>
+					<input type="text" class="form-control" id="postNum" name = "zipcode" readonly>
 				</div>
 				<div
 					class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">

@@ -15,8 +15,8 @@ import kh.spring.dto.MemberDTO;
 public class MemberDAO {
 
 	
-	@Autowired
-	private JdbcTemplate jdbc;
+//	@Autowired
+//	private JdbcTemplate jdbc;
 	
 	@Autowired
 	private SqlSessionTemplate mybatis;
@@ -27,15 +27,11 @@ public class MemberDAO {
 		return mybatis.insert("Members.insert",dto);
 	}
 	
-	
+	public int update (MemberDTO dto) {
+		return mybatis.update("Members.update",dto);
+	}
 		
-//	public int update (MemberDTO dto) {
-//		String sql = "update member set id = ?,contact = ?, email = ?, zipcode = ?, address1 = ? , address2 = ? where seq = ?";
-//		return jdbc.update(sql,dto.getId(),dto.getContact(),dto.getEmail(),dto.getZipcode(),dto.getAddress1(),dto.getAddress2(),dto.getSeq());
-//	}
-//	
-//
-//	
+	
 //	public boolean isId (String id) {
 //		String sql = "select count (*) from member where id = ?";
 //		return jdbc.queryForObject(sql,boolean.class,id);
