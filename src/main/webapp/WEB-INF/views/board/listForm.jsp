@@ -650,7 +650,8 @@ table.dataTable td {
 		</tbody>
 		
 		<tfoot>
-		
+			<tr>
+			<td colspan = "3" align="right"><a href = "/board/write"><button>글 작성하기</button></a>
 		</tfoot>
 	</table>
 
@@ -670,6 +671,8 @@ table.dataTable td {
 	]);
 	</c:forEach> 
 
+	console.log(data[0])
+	
 	$('#myTable').DataTable({			
 				data : data
 				})

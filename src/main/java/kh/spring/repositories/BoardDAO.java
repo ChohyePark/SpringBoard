@@ -41,9 +41,7 @@ public class BoardDAO {
 		String sql = "select * from board where seq = ?";
 		return jdbc.queryForObject(sql,new BeanPropertyRowMapper<BoardDTO>(BoardDTO.class),id);	
 	}
-	
 
-	
 	
 	
 	

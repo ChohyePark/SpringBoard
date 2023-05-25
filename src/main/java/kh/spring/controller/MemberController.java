@@ -48,33 +48,38 @@ public class MemberController {
 				return "member/memberInfo";
 		}
 		
-//		
-//		@ResponseBody 
-//		@RequestMapping(value = "idCheck", produces = "text/html; charset = utf8")
-//		public String idCheck(String id) {
-//			boolean result = dao.isId(id);
-//			return String.valueOf(result);
-//		}
-//	
-//		@ResponseBody
-//		@RequestMapping("login")
-//		public String login (String id, String pw) {
-//			MemberDTO dto = dao.selectById(id, pw);
-//			System.out.println(dto.getContact());
-//			boolean result = encryptor.checkPassword(pw, dto.getPw());
-//			if (result) {
-//				session.setAttribute("loginID", id);
-//			} 
-//			return String.valueOf(result);	
-//		}
-//		
+		
+		@ResponseBody 
+		@RequestMapping(value = "idCheck", produces = "text/html; charset = utf8")
+		public String idCheck(String id) {
+			boolean result = dao.isId(id);
+			return String.valueOf(result);
+		}
+
+		
+	
+		@ResponseBody
+		@RequestMapping("login")
+		public String login (String id, String pw) {
+			MemberDTO dto = dao.selectById(id, pw);
+			boolean result = encryptor.checkPassword(pw, dto.getPw());
+			if (result) {
+				session.setAttribute("loginID", id);
+			} 
+			return String.valueOf(result);	
+		} 
+		
+		
+		
 		@RequestMapping("logout")
 		public String logout () {
 			session.invalidate();
 			return "redirect:/";	
 		}
-//		
-//		
+		
+		
+	
+	
 //		@RequestMapping("memberInfo") 
 //		public String memberInfo (String loginID, Model model) {
 //			MemberDTO dto = dao.selectById(loginID);

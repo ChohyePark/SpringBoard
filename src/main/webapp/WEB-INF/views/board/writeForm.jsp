@@ -39,7 +39,7 @@ table {
 
 </head>
 <body>
-	<form action="/board/insert"  method = "post">
+	<form action="/board/insert"  method = "post" enctype="multipart/form-data">
 		<table border="1">
 			<tr>
 				<th>자유게시판 글 작성하기</th>
@@ -55,10 +55,11 @@ table {
 				<input type="text" name="writer" value ="${loginID}"></td>
 			</tr>
 			<tr>
-				<td align = "center"><input type=file name=file>
-			<tr>
 				<td><textarea name="contents" placeholder="글 내용을 입력하세요"
 						cols="74" rows="15"></textarea></td>
+			</tr>
+			<tr>
+				<td><input type = "file" name = "files">
 			</tr>
 			<tr>
 				<td align="right">

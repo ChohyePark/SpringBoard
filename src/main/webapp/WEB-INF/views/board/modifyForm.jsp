@@ -49,12 +49,9 @@ table {
 				<input type="text" name="title" 
 				style="width: 200px" > 
 				<input type="text" name="writer" value = "${writer}">
-				<input type="text" name="writer" value = "${id}" style = "display:none">
+				<input type="text" name="seq" value = "${id}" style = "display:none">
 				</td>
 			</tr>
-			<tr>
-				<td align = "center"><input type=file name=file>
-			<tr>
 				<td><textarea name="contents" cols="74" rows="15"></textarea></td>
 			</tr>
 			<tr>

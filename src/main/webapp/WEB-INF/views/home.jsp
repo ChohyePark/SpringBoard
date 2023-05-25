@@ -72,8 +72,6 @@ table {
 	
 	</c:choose>
 
-
-
 	<script>
 		$("#loginbtn").on("click", function() {
 			const id = $("#id").val();

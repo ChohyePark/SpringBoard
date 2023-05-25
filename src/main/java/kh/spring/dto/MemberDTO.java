@@ -15,12 +15,9 @@ public class MemberDTO {
 	
 	public MemberDTO() {}
 
-
-	
 	
 	public MemberDTO(Long seq, String id, String pw, String name, String contact, String email, String zipcode,
 			String address1, String address2) {
-		super();
 		this.seq = seq;
 		this.id = id;
 		this.pw = pw;
@@ -31,7 +28,6 @@ public class MemberDTO {
 		this.address1 = address1;
 		this.address2 = address2;
 	}
-
 
 
 

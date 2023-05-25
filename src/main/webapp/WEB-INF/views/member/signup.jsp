@@ -50,7 +50,7 @@
 </head>
 
 <body>
-	<form action="/member/joinProc" id="frm" method = "post">
+	 <form action="/member/joinProc" id="frm" method = "post"> 
 		<div class="container">
 			<div class="row">
 				<div class="col-12 text-align-center">회원가입 정보</div>

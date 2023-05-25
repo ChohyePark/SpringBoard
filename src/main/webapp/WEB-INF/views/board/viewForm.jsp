@@ -57,7 +57,7 @@ table {
 			<tr>
 				<td align="right" id = "btncontroller">
 				<a href = "/board/modify?id=${dto.seq}&writer=${dto.writer}"><button type = "button">수정</button></a>
-				<a href = "/board/delete?id=${dto.seq}"><button type = "button" id = "delbtn">삭제</button>
+				<a href = "/board/delete?id=${dto.seq}"><button type = "button" id = "delbtn">삭제</button></a>
 			</td>
 			</tr>
 		</table>
