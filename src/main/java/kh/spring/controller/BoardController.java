@@ -1,7 +1,6 @@
 package kh.spring.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,21 +15,25 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kh.spring.dto.BoardDTO;
 import kh.spring.dto.FilesDTO;
-import kh.spring.repositories.BoardDAO;
-import kh.spring.repositories.FilesDAO;
+import kh.spring.services.BoardService;
+import kh.spring.services.FileService;
 
 @Controller
 @RequestMapping("/board/")
 public class BoardController {
 
+
 	@Autowired
 	private HttpSession session;
 	
+	@Autowired 
+	private BoardService boardService;
+		
 	@Autowired
-	private BoardDAO dao;
+	private FileService fileService;
+
+
 	
-	@Autowired
-	private FilesDAO filesDAO;
 	
 	@RequestMapping("write") 
 	public String write () {
@@ -40,22 +43,9 @@ public class BoardController {
 	
 	@RequestMapping("insert")
 	public String insert (BoardDTO dto,MultipartFile[] files) throws Exception{
+		Long parent_seq = boardService.insert(dto);
 		String realPath = session.getServletContext().getRealPath("upload");
-		File realPathFile = new File(realPath);
-		if (!realPathFile.exists())
-			realPathFile.mkdir();
-		if (files != null) {
-			for (MultipartFile file : files) {
-				if (file.isEmpty()) {
-					break;
-				}
-				String oriName = file.getOriginalFilename();
-				String sysName = UUID.randomUUID() + "_" + oriName;
-				file.transferTo(new File(realPath + "/" + sysName));
-					filesDAO.insert(oriName,sysName);
-			}
-		}
-		dao.insert(dto);
+		fileService.insert(realPath,files,parent_seq);	
 		return "redirect:list";
 	}
 	
@@ -63,7 +53,7 @@ public class BoardController {
 	
 	@RequestMapping("delete")
 	public String delete (Long id) {
-		dao.delete(id);
+		boardService.delete(id);
 		return "redirect:list";
 	}
 	
@@ -80,21 +70,23 @@ public class BoardController {
 	public String update (BoardDTO dto) {
 		System.out.println(dto.getTitle());
 		System.out.println(dto.getSeq());
-		dao.update(dto);	
+		boardService.update(dto);	
 		return "redirect:list";
 	}
 	
 	
 	@RequestMapping("list")
 	public String list (Model model) {
-		List<BoardDTO> list = dao.selectAll();
+		List<BoardDTO> list = boardService.selectAll();
 		model.addAttribute("boards",list);
 		return "board/listForm";	
 	}
 	
 	@RequestMapping("view")
 	public String view (Long id,Model model) {
-		BoardDTO dto = dao.selectById(id);
+		List<FilesDTO> files = fileService.selectById(id);
+		BoardDTO dto = boardService.selectById(id);
+		model.addAttribute("files",files);
 		model.addAttribute("dto",dto);
 		return "board/viewForm";
 	} 

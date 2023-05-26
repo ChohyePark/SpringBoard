@@ -1,7 +1,6 @@
 package kh.spring.repositories;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +16,13 @@ public class FilesDAO {
 	private SqlSessionTemplate mybatis;
 	
 	
-	public int insert (String oriName, String sysName) {
-		Map<String, String> file = new HashMap();
-		file.put("oriName", oriName);
-		file.put("sysName", sysName);
-		return mybatis.insert("Files.insert",file);
+	public int insert (FilesDTO dto) {
+		return mybatis.insert("Files.insert",dto);
 	}
 
+	public List<FilesDTO> selectById (Long id) {
+		return mybatis.selectList("Files.selectById",id);
+	}
 	
 
 }

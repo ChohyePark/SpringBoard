@@ -32,7 +32,9 @@ table {
 
 </head>
 <body>
-
+	<div align = "center">
+	<img src="/resources/homeimg.jpg">
+	</div>
 	<c:choose>
 		<c:when test="${loginID != null}">
 		<table border ="1" align = "center">
@@ -69,8 +71,8 @@ table {
 				</tr>
 			</table>
 	</c:otherwise>
-	
 	</c:choose>
+
 
 	<script>
 		$("#loginbtn").on("click", function() {

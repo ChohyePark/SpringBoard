@@ -44,11 +44,8 @@ public class MemberDAO {
 
 	
 
-	public MemberDTO selectById (String id, String pw) {
-			Map< String, String> param = new HashMap<String, String>();
-			param.put("id", id);
-			param.put("pw", pw);
-			return mybatis.selectOne("Members.selectById",param);
+	public MemberDTO selectById (String loginID) {
+			return mybatis.selectOne("Members.selectById",loginID);
 	}
 	
 	

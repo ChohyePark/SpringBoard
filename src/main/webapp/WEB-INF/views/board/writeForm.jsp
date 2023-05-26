@@ -59,7 +59,7 @@ table {
 						cols="74" rows="15"></textarea></td>
 			</tr>
 			<tr>
-				<td><input type = "file" name = "files">
+				<td><input type = "file" name = "files" multiple>
 			</tr>
 			<tr>
 				<td align="right">

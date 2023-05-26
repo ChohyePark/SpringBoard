@@ -2,6 +2,7 @@ package kh.spring.repositories;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,31 +16,32 @@ public class BoardDAO {
 	@Autowired
 	private JdbcTemplate jdbc;
 	
+	@Autowired
+	private SqlSessionTemplate mybatis;
 	
 	
-	public int insert (BoardDTO dto) {
-		String sql = "insert into board values(board_seq.nextval,?,?,?,0,sysdate)";
-		return jdbc.update(sql,dto.getWriter(),dto.getTitle(),dto.getContents());	
+	public Long insert (BoardDTO dto) {
+		mybatis.insert("Board.insert",dto);
+		return dto.getSeq();
 	}
 	
-	public int delete (Long id) {
-		String sql = "delete from board where seq = ?";
-		return jdbc.update(sql,id);
+	
+	public void delete (Long id) {
+		mybatis.delete("Board.delete",id);
 	}
 	
-	public int update (BoardDTO dto) {
-		String sql = "update board set title = ? , contents = ? where seq = ?";
-		return jdbc.update(sql, dto.getTitle(), dto.getContents(), dto.getSeq());
+	
+	public void update (BoardDTO dto) {
+		mybatis.update("Board.update",dto);
+
 	}
 	
 	public List<BoardDTO> selectAll () {
-		String sql = "select * from board";
-		return jdbc.query(sql,new BeanPropertyRowMapper<BoardDTO>(BoardDTO.class));
+		return mybatis.selectList("Board.selectAll");
 	}
 	
 	public BoardDTO selectById (Long id) {
-		String sql = "select * from board where seq = ?";
-		return jdbc.queryForObject(sql,new BeanPropertyRowMapper<BoardDTO>(BoardDTO.class),id);	
+		return mybatis.selectOne("Board.selectById",id);
 	}
 
 	

@@ -5,6 +5,9 @@
   
   <mapper namespace="Files">
 	<insert id = "insert">
-	insert into files values (0,0,#{oriName},#{sysName})
+	insert into files values (${parent_id},0,#{oriName},#{sysName})
 	</insert>  
+	<select id = "selectById" resultType="kh.spring.dto.FilesDTO">
+	select * from files where parent_id = ${parent_id}
+	</select>
   </mapper>

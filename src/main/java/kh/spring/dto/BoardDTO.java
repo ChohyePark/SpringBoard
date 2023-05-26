@@ -14,7 +14,6 @@ public class BoardDTO {
 	
 	
 	public BoardDTO(Long seq, String writer, String title, String contents, Long view_count, Timestamp write_date) {
-		super();
 		this.seq = seq;
 		this.writer = writer;
 		this.title = title;
